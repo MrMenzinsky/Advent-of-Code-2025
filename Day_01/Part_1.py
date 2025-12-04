@@ -7,7 +7,6 @@ with open('Part_1_input.txt', 'r', encoding='utf-8') as file:
     data = file.readlines()
 
 def parseData(step):
-    # print(step)
     if (step[0] == 'L'):
         return 0 - int(step[1:])
     elif (step[0] == 'R'):
@@ -16,18 +15,16 @@ def parseData(step):
         raise "Error! Data: "+step
 
 rotations = list(map(parseData, data))
-# print(rotations)
 
-# dial = list(range(0,100,1))
 countZeros = 0
 
-def traverse(rotation, position):
+def traverse(position, rotation):
     global countZeros
     newPosition = position + rotation
-    if (newPosition == 0 or newPosition == 100):
+    if (newPosition == 0):
         countZeros += 1
         return 0
-    elif (newPosition > 100):
+    elif (newPosition > 99):
         newPosition = newPosition % 100
         countZeros = countZeros + 1 if newPosition == 0 else countZeros
         return newPosition
